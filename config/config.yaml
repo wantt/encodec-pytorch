@@ -7,8 +7,8 @@ common:
   amp: False
 
 datasets:
-  train_csv_path: '/mnt/lustre/sjtu/home/zkn02/train_encodec/datasets/libritts_train100h.csv'
-  test_csv_path: '/mnt/lustre/sjtu/home/zkn02/train_encodec/datasets/LibriTTS_dev-other.csv'
+  train_csv_path: '/root/encodec-pytorch/datasets/librispeech_train100h.csv'
+  test_csv_path: '/root/encodec-pytorch/datasets/test.csv'
   batch_size: 2
   tensor_cut: 3200000
   num_workers: 0
@@ -47,7 +47,7 @@ model:
 
 distributed:
   data_parallel: True
-  world_size: 4
+  world_size: 1
   find_unused_parameters: False
   torch_distributed_debug: False
   init_method: tmp

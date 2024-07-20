@@ -110,6 +110,8 @@ class EncodecModel(nn.Module):
     def segment_length(self) -> tp.Optional[int]:
         if self.segment is None:
             return None
+        if 'None' in self.segment:
+            return None
         return int(self.segment * self.sample_rate)
 
     @property
@@ -147,7 +149,7 @@ class EncodecModel(nn.Module):
     def _encode_frame(self, x: torch.Tensor) -> EncodedFrame:
         length = x.shape[-1] # tensor_cut or original
         duration = length / self.sample_rate
-        assert self.segment is None or duration <= 1e-5 + self.segment
+        assert self.segment is None or  'None' in  self.segment or duration <= 1e-5 +  self.segment
 
         if self.normalize:
             mono = x.mean(dim=1, keepdim=True)
